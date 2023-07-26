@@ -1,0 +1,23 @@
+{
+  "build": {
+    "dockerfile": "./Containerfile",
+    "context": "."
+  },
+  "features": {},
+  "runArgs": [
+    "--security-opt",
+    "label=disable",
+    "--device",
+    "/dev/fuse",
+    "--userns=keep-id"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools"
+      ]
+    }
+  },
+  "remoteUser": "code"
+}

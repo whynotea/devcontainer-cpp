@@ -1,0 +1,20 @@
+FROM ghcr.io/whynotea/devcontainer-base:v1.0.2
+
+USER root
+
+RUN dnf -y update && \
+    dnf -y install cmake cppcheck valgrind gdb
+
+# Setup ENV vars for vcpkg
+ENV VCPKG_ROOT=/usr/local/vcpkg \
+  VCPKG_DOWNLOADS=/usr/local/vcpkg-downloads
+ENV PATH="${PATH}:${VCPKG_ROOT}"
+
+ARG USERNAME=code
+
+COPY base-scripts/install-vcpkg.sh /tmp/
+RUN chmod +x /tmp/install-vcpkg.sh \
+  && /tmp/install-vcpkg.sh ${USERNAME} \
+  && rm -f /tmp/install-vcpkg.sh
+
+USER code
