@@ -4,7 +4,7 @@ USER root
 
 RUN dnf -y update && \
   dnf install --setopt=install_weak_deps=false --setopt=tsflags=nodocs -y\
-    cmake cppcheck valgrind gdb libXinerama-devel libstdc++-static && \
+    cmake cppcheck valgrind gdb libXinerama-devel libstdc++-static glew-devel && \
   dnf groupinstall --setopt=install_weak_deps=false --setopt=tsflags=nodocs -y\
     "X Software Development"
 
